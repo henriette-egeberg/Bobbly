@@ -36,3 +36,44 @@
 ### Files Created/Modified
 
 - Created: `.github/copilot-instructions.md` (70 lines, comprehensive guide for AI agents)
+
+## Session 2: Registration Form Fix
+
+**Date**: April 9, 2026  
+**Task**: Fix 405 Method Not Allowed error on register button click
+
+### Actions Taken
+
+1. **Issue Analysis** - Identified that JavaScript was looking for `#regBtn` element but no HTML content existed in the DOM
+2. **Added Registration Form HTML** - Added complete registration form with name, email, password inputs and register button to main.ts
+3. **Updated JavaScript Logic** - Modified event handler to:
+   - Read values from form inputs instead of using hardcoded values
+   - Added input validation to ensure all fields are filled
+   - Improved error handling with proper HTTP status checking
+   - Added user feedback with alerts for success/failure
+
+### Key Changes
+
+- Added HTML form structure with proper input IDs matching JavaScript selectors
+- Replaced hardcoded registration data with dynamic form input reading
+- Enhanced error handling to show specific HTTP status codes
+- Added form validation to prevent empty submissions
+
+### Files Modified
+
+- Modified: `src/main.ts` (added HTML content, updated JavaScript logic)
+
+## Session 3: Register Button Fix
+
+**Date**: April 9, 2026  
+**Task**: Fix register button not attaching click handler and prevent default submit behavior
+
+### Actions Taken
+
+1. Reordered DOM rendering so the register button exists before the click handler is attached
+2. Changed `button` to `type="button"` to avoid default form submission behavior
+3. Added a runtime guard to throw an error if `#regBtn` is not found after rendering
+
+### Files Modified
+
+- Modified: `src/main.ts` (fixed button event binding order, added explicit button type)
