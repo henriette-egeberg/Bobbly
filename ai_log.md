@@ -1,10 +1,12 @@
 # AI Usage Log
 
 ## Session 1: Copilot Instructions Generation
+
 **Date**: April 8, 2026  
 **Task**: Analyze codebase and generate/update `.github/copilot-instructions.md`
 
 ### Actions Taken
+
 1. **File Search** - Searched for existing AI convention files (copilot-instructions.md, AGENT.md, CLAUDE.md, .cursorrules, etc.) - No files found
 2. **Codebase Analysis**:
    - Read README.md to understand project scope
@@ -24,6 +26,7 @@
 4. **Fixed File Links** - Corrected relative paths in markdown links to use `../` prefix for proper linking from `.github/` directory
 
 ### Key Findings
+
 - Bobbly is a TypeScript + Vite learning project with minimal scope
 - Uses strict TypeScript settings (`noUnusedLocals`, `noUnusedParameters`)
 - Counter component demonstrates closure-based state management
@@ -31,4 +34,5 @@
 - Module-level exports for component setup functions
 
 ### Files Created/Modified
+
 - Created: `.github/copilot-instructions.md` (70 lines, comprehensive guide for AI agents)
