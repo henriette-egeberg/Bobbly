@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPMincho:wght@400;700&display=swap" rel="stylesheet" />
+		<link rel="stylesheet" href="../src/style.css" />
+		<title>Register - Böbbly</title>
+	</head>
+	<body>
+		<header>
+			<img src="../public/Bobbly_logo_transparent.svg" alt="böbbly" />
+			<button>Login</button>
+		</header>
+		<main class="register">
+			<h1>Böbbly Register</h1>
+			<form action="/register" method="post">
+				<label for="name">Full Name:</label>
+				<input type="text" id="name" name="name" required /><br /><br />
+
+				<label for="email">Email Address:</label>
+				<input type="email" id="email" name="email" required /><br /><br />
+
+				<label for="password">Password:</label>
+				<input type="password" id="password" name="password" required /><br /><br />
+
+				<button type="submit">Register</button>
+				<p>Already have an account? <a href="/login">Login</a></p>
+			</form>
+		</main>
+		<footer>
+			<p>&copy; 2023 Böbbly. All rights reserved.</p>
+		</footer>
+	</body>
+</html>
