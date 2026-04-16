@@ -1,6 +1,4 @@
-const url = "https://v2.api.noroff.dev/auth/register";
-
-document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
+document.querySelector<HTMLDivElement>("#app_register")!.innerHTML = `
 
 	<h1>Register</h1>
 	<label for="name">Name:</label>
@@ -13,7 +11,7 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
 	<input type="password" id="password" placeholder="Enter your password">
 	
 	<button id="regBtn" type="button">Register</button>
-	<p>Already have an account? <a href="#" id="loginBtn">Login</a></p>
+	<p>Already have an account? <a href="#" id="loginBtnLink">Login</a></p>
 
 `;
 
@@ -63,3 +61,5 @@ regBtn.addEventListener("click", () => {
 			alert("Registration failed: " + error.message);
 		});
 });
+
+// login functionality
