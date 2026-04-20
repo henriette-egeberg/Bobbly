@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPMincho:wght@400;700&display=swap" rel="stylesheet" />
+		<link rel="stylesheet" href="../src/style.css" />
+		<script src="../src/main.ts" defer></script>
+
+		<title>Profile - Böbbly</title>
+	</head>
+	<body>
+		<header>
+			<img src="../public/Bobbly_logo_transparent.svg" alt="böbbly" />
+			<section>
+				<span>explore</span>
+				<span>Trending</span>
+				<span>Collection</span>
+			</section>
+			<section><button>Create Post</button> <button>Pro</button></section>
+		</header>
+		<main id="app_profile" class="profile">
+			<section class="profile_info">
+				<div class="profile_header">
+					<div class="grid_item">
+						<img src="../public/profile_picture.png" class="profile_pic" alt="Profile Picture" />
+						<span
+							><h1>Julian Thorne</h1>
+							<div>@julian_curates</div></span
+						>
+					</div>
+					<div class="grid_item">
+						<button>Follow</button>
+						<button>Edit</button>
+					</div>
+				</div>
+
+				<div class="bio">
+					<h3>
+						Small text with the bio of the person hosting this spesific blog. here it can be written what you want the first imression of your blog will be and what the reader can expect too see from
+						you
+					</h3>
+				</div>
+			</section>
+			<section class="blog_posts">
+				<div class="grid_container">
+					<div class="grid_item">
+						<img class="blog_posts_img" src="../public/profile_picture.png" alt="" />
+						<div class="about_post">
+							<span class="when_posted">2 days ago</span>
+							<h2 class="title">Maten i Taize</h2>
+							<div class="intro">dette skal kort forklare hva dette blogg inlegget handler om, i dette tilfelle handler det f.eks om maten i taize</div>
+							<div class="liked">128</div>
+						</div>
+					</div>
+					<div class="grid_item">
+						<img class="blog_posts_img" src="../public/profile_picture.png" alt="" />
+						<div class="about_post">
+							<span class="when_posted">2 days ago</span>
+							<h2 class="title">Maten i Taize</h2>
+							<div class="intro">dette skal kort forklare hva dette blogg inlegget handler om, i dette tilfelle handler det f.eks om maten i taize</div>
+							<div class="liked">128</div>
+						</div>
+					</div>
+					<div class="grid_item">
+						<img class="blog_posts_img" src="../public/profile_picture.png" alt="" />
+						<div class="about_post">
+							<span class="when_posted">2 days ago</span>
+							<h2 class="title">Maten i Taize</h2>
+							<p class="intro">dette skal kort forklare hva dette blogg inlegget handler om, i dette tilfelle handler det f.eks om maten i taize</p>
+							<span class="liked">128</span> <span class="like_icon">Likes</span>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+		<footer>
+			<p>&copy; 2023 Böbbly. All rights reserved.</p>
+		</footer>
+	</body>
+</html>
