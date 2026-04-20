@@ -17,7 +17,7 @@
 	padding: 0;
 	color: var(--text);
 	background: var(--bg);
-	text-align: center;
+	text-align: left;
 }
 
 h1 {
@@ -28,6 +28,7 @@ h2 {
 }
 h3 {
 	font-size: 20px;
+	font-weight: 300;
 }
 h4 {
 	font-size: 16px;
@@ -44,6 +45,15 @@ span {
 button {
 	border: 3px solid var(--accent-border-1);
 	border-radius: 10px;
+	height: 45px;
+	padding: 0 16px;
+	margin-left: 16px;
+}
+main {
+	min-height: calc(100vh - 210px); /* 100vh minus header (70px) and footer (140px) */
+}
+section {
+	margin-bottom: 64px;
 }
 header,
 footer {
@@ -61,8 +71,6 @@ header {
 		margin-top: 8px;
 	}
 	button {
-		height: 40px;
-		width: 100px;
 		font-size: 16px;
 		background: transparent;
 	}
@@ -116,4 +124,69 @@ main.login {
 			color: var(--accent);
 		}
 	}
+}
+
+.profile_pic {
+	width: 120px;
+	height: 120px;
+	border-radius: 10px;
+	border: 3px solid var(--accent-border-2);
+	margin: 16px auto;
+}
+
+.grid_container {
+	display: grid;
+	grid-template-rows: 1fr;
+	gap: 32px;
+	align-items: left;
+}
+.grid_item {
+	display: flex;
+}
+
+.profile_header {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	padding: 16px;
+	max-width: 1024px;
+	border-bottom: 3px solid var(--accent-border-1);
+	border-radius: 8px;
+	margin: 0 auto 8px;
+	span {
+		align-items: baseline;
+		display: flex;
+		flex-direction: column;
+		justify-content: end;
+		margin-bottom: 16px; /* Same Value as Padding (Profile Header) */
+		margin-left: 32px;
+	}
+}
+.profile_info {
+	max-width: 1024px;
+	margin: 16px auto;
+	.bio {
+		max-width: 600px;
+		h3 {
+			text-align: left;
+		}
+	}
+}
+.blog_posts {
+	max-width: 1024px;
+	margin: 64px auto;
+}
+.blog_posts_img {
+	width: 200px;
+	height: 150px;
+	object-fit: cover;
+	border: 3px solid var(--accent-border-2);
+	border-radius: 32px 16px 0 16px;
+	margin-right: 32px;
+}
+.about_post {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	margin: 16px 0;
 }
