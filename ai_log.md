@@ -77,3 +77,45 @@
 ### Files Modified
 
 - Modified: `src/main.ts` (fixed button event binding order, added explicit button type)
+
+## Session 5: Dynamic Profile Name Rendering
+
+**Date**: April 21, 2026  
+**Task**: Render the fetched `profile_name` value into `src/profile.ts` HTML.
+
+### Actions Taken
+
+1. Confirmed the profile HTML is injected via `innerHTML` in `src/profile.ts`.
+2. Moved rendering inside the API callback so `profile_name` exists before insertion.
+3. Replaced the empty `<h1></h1>` with `${profile_name}` in the template literal.
+4. Added a fallback UI when the profile fetch fails.
+
+### Key Findings
+
+- `profile_name` must be created inside the fetch callback before using it in the HTML template.
+- The page previously rendered static HTML before the API response, so the fetched name was never inserted.
+
+### Files Modified
+
+- Modified: `src/profile.ts` (rendered fetched `profile_name` into the profile template)
+
+## Session 4: Template Literal Text Rendering
+
+**Date**: April 21, 2026  
+**Task**: Explain why `${}` breaks HTML text rendering in `src/profile.ts` and log the resolution.
+
+### Actions Taken
+
+1. Read `src/profile.ts` and confirmed the HTML is injected via a backtick template literal.
+2. Explained that `${...}` inside a template literal becomes JS interpolation, not literal text.
+3. Added a comment to `src/profile.ts` clarifying that literal `${...}` must be escaped as `\${...}`.
+
+### Key Findings
+
+- In template literals, `${}` is reserved for expression substitution.
+- Unescaped `${}` can cause the rendered HTML to disappear because the JS parser tries to evaluate it.
+- Use `\${...}` for literal dollar-brace text, or use a normal quoted string if interpolation is not needed.
+
+### Files Modified
+
+- Modified: `src/profile.ts` (added template-literal explanation comment)
