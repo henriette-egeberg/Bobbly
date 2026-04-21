@@ -21,19 +21,12 @@ fetch(`https://v2.api.noroff.dev/social/posts`, {
 			media: string | null;
 		}>;
 		console.log("Post data:", json.data);
-		if (json.data.media === null || json.data.media === undefined) {
-			console.log("This post has no media.");
-			json.data.media = "../public/profile_picture.png";
-			let placeholderMedia = json.data.media;
-			console.log("Using placeholder media:", placeholderMedia);
-		}
-		console.log("Post media:", json.data.media);
 
 		const postsHTML = posts
 			.map(
 				(post) => `
 		<div class="grid_item">
-			<img class="blog_posts_img" src="${post.media || "https://images.unsplash.com/photo-1579547945413-497e1b99dac0?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=80&h=400&w=400"}" alt="${post.media || "Post image"}" />
+			<img class="blog_posts_img" src="${post.media?.url || "https://images.unsplash.com/photo-1579547945413-497e1b99dac0?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=80&h=400&w=400"}" alt="Post image unable to load" />
 			<div class="about_post">
 				<span class="when_posted">2 days ago</span>
 				<h2 class="title">${post.title}</h2>
