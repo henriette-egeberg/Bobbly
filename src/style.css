@@ -113,7 +113,7 @@ main.edit {
 	width: 100%;
 }
 textarea {
-	field-sizing: content; /* makes  */
+	field-sizing: content; /* makes it expand with content */
 	border: 3px solid var(--border);
 	padding: 0 16px;
 }
