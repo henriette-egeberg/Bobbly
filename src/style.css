@@ -1,7 +1,8 @@
 @import "./basic.css";
 @import "./variables.css";
 main.register,
-main.login {
+main.login,
+main.edit {
 	margin: 64px auto 0 auto;
 	align-items: center;
 	max-width: 400px;
@@ -104,4 +105,15 @@ main.login {
 	flex-direction: column;
 	justify-content: space-between;
 	margin: 16px 0;
+}
+
+.bio {
+	min-height: 100px;
+	max-height: 200px;
+	width: 100%;
+}
+textarea {
+	field-sizing: content; /* makes  */
+	border: 3px solid var(--border);
+	padding: 0 16px;
 }
