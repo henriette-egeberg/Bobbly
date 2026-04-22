@@ -1,0 +1,12 @@
+:root {
+	--text: #fff;
+	--bg: #303030;
+	--border: #646464;
+	--accent: #64e1f5;
+	--accent-bg: #4b0179;
+	--accent-border-1: #b141b9;
+	--accent-border-2: #89d583;
+
+	--sans: normal 400 1rem "BIZ UDPMincho", serif;
+	--sans-bold: normal 700 1rem "BIZ UDPMincho", serif;
+}

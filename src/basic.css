@@ -1,0 +1,79 @@
+/* Basic Styles */
+/* This file contains basic structures that is repeated and used throughout the application */
+
+* {
+	font-family: var(--sans);
+	box-sizing: border-box; /* makes sure width and height include padding and border */
+	margin: 0;
+	padding: 0;
+	color: var(--text);
+	background: var(--bg);
+	text-align: left;
+}
+
+h1 {
+	font-size: 32px;
+}
+h2 {
+	font-size: 24px;
+}
+h3 {
+	font-size: 20px;
+	font-weight: 300;
+}
+h4 {
+	font-size: 16px;
+}
+h5 {
+	font-size: 14px;
+}
+p {
+	font-size: 16px;
+}
+span {
+	font-size: 14px;
+}
+button {
+	border: 3px solid var(--accent-border-1);
+	border-radius: 10px;
+	height: 45px;
+	padding: 0 16px;
+}
+section {
+	margin-bottom: 64px;
+}
+header,
+footer {
+	background-color: var(--accent-bg);
+}
+main {
+	min-height: calc(100vh - 210px); /* 100vh minus header (70px) and footer (140px) */
+}
+
+header {
+	height: 70px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 20px;
+	img {
+		height: 45px;
+		background-color: transparent;
+		margin-top: 8px;
+	}
+	button {
+		font-size: 16px;
+		background: transparent;
+		margin-left: 16px;
+	}
+}
+footer {
+	height: 140px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 14px;
+	p {
+		background: transparent;
+	}
+}
