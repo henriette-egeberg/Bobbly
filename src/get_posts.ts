@@ -18,7 +18,7 @@ fetch(`https://v2.api.noroff.dev/social/posts`, {
 			title: string;
 			body: string;
 			tags: string[];
-			media: string | null;
+			media: { url: string } | null;
 		}>;
 		console.log("Post data:", json.data);
 
@@ -26,7 +26,7 @@ fetch(`https://v2.api.noroff.dev/social/posts`, {
 			.map(
 				(post) => `
 		<div class="grid_item">
-			<img class="blog_posts_img" src="${post.media?.url || "https://images.unsplash.com/photo-1579547945413-497e1b99dac0?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=80&h=400&w=400"}" alt="Post image unable to load" />
+			<img class="blog_posts_img" src="${post.media?.url ?? "https://images.unsplash.com/photo-1579547945413-497e1b99dac0?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=80&h=400&w=400"}" alt="Post image unable to load" />
 			<div class="about_post">
 				<span class="when_posted">2 days ago</span>
 				<h2 class="title">${post.title}</h2>
