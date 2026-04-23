@@ -21,24 +21,7 @@
 			</section>
 			<section><button>Create Post</button> <button>Pro</button></section>
 		</header>
-		<main id="app_edit" class="edit">
-			<h1>Create Post</h1>
-
-			<label for="name">Title:</label>
-			<input type="text" id="name" placeholder="" value="${create_post_title}" disabled />
-
-			<label for="email">Content: <span class="char_count">(max 200 characters)</span></label>
-			<textarea id="bio" class="bio" maxlength="200" rows="5" cols="50">${create_post_content}</textarea>
-
-			<label for="media_url">Media URL:</label>
-			<input type="text" id="media_url" value="${create_post_media_url}" />
-
-			<label for="medsia_alt">Media Alt Text:</label>
-			<input type="text" id="media_alt" value="${create_post_media_alt}" />
-
-			<button id="createBtn" type="button">Create Post</button>
-			<p>Not Ready to share? <a href="#">Profile</a></p>
-		</main>
+		<main id="app_create_post" class="create_post"></main>
 		<footer>
 			<p>&copy; 2023 Böbbly. All rights reserved.</p>
 		</footer>
