@@ -78,6 +78,27 @@
 
 - Modified: `src/main.ts` (fixed button event binding order, added explicit button type)
 
+## Session 4: Template Literal Text Rendering
+
+**Date**: April 21, 2026  
+**Task**: Explain why `${}` breaks HTML text rendering in `src/profile.ts` and log the resolution.
+
+### Actions Taken
+
+1. Read `src/profile.ts` and confirmed the HTML is injected via a backtick template literal.
+2. Explained that `${...}` inside a template literal becomes JS interpolation, not literal text.
+3. Added a comment to `src/profile.ts` clarifying that literal `${...}` must be escaped as `\${...}`.
+
+### Key Findings
+
+- In template literals, `${}` is reserved for expression substitution.
+- Unescaped `${}` can cause the rendered HTML to disappear because the JS parser tries to evaluate it.
+- Use `\${...}` for literal dollar-brace text, or use a normal quoted string if interpolation is not needed.
+
+### Files Modified
+
+- Modified: `src/profile.ts` (added template-literal explanation comment)
+
 ## Session 5: Dynamic Profile Name Rendering
 
 **Date**: April 21, 2026  
@@ -99,23 +120,24 @@
 
 - Modified: `src/profile.ts` (rendered fetched `profile_name` into the profile template)
 
-## Session 4: Template Literal Text Rendering
+## Session 6: Edit Button Event Listener Fix
 
-**Date**: April 21, 2026  
-**Task**: Explain why `${}` breaks HTML text rendering in `src/profile.ts` and log the resolution.
+**Date**: April 23, 2026  
+**Task**: Fix edit button not responding to clicks in `src/edit.ts`.
 
 ### Actions Taken
 
-1. Read `src/profile.ts` and confirmed the HTML is injected via a backtick template literal.
-2. Explained that `${...}` inside a template literal becomes JS interpolation, not literal text.
-3. Added a comment to `src/profile.ts` clarifying that literal `${...}` must be escaped as `\${...}`.
+1. Analyzed `src/edit.ts` and identified the event listener was attached outside the fetch callback.
+2. Moved the `addEventListener` for `#editBtn` inside the fetch callback, after the HTML is rendered.
+3. Added missing `Authorization` and `X-Noroff-API-Key` headers to the PUT request for profile updates.
+4. Simplified the response handling to remove unnecessary token storage logic.
 
 ### Key Findings
 
-- In template literals, `${}` is reserved for expression substitution.
-- Unescaped `${}` can cause the rendered HTML to disappear because the JS parser tries to evaluate it.
-- Use `\${...}` for literal dollar-brace text, or use a normal quoted string if interpolation is not needed.
+- Event listeners must be attached after DOM elements are created; attaching them before causes `null` references.
+- API PUT requests require the same authorization headers as GET requests.
+- Profile updates don't return new access tokens, so token storage logic was unnecessary.
 
 ### Files Modified
 
-- Modified: `src/profile.ts` (added template-literal explanation comment)
+- Modified: `src/edit.ts` (fixed event listener timing and added required API headers)

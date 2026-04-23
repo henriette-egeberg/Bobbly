@@ -7,7 +7,8 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPMincho:wght@400;700&display=swap" rel="stylesheet" />
 		<link rel="stylesheet" href="../../src/style.css" />
-		<script src="" defer></script>
+		<script src="../../src/edit.ts" defer></script>
+		<script src="../../src/edit_put.ts" defer></script>
 
 		<title>Register - Böbbly</title>
 	</head>
@@ -21,29 +22,7 @@
 			</section>
 			<section><button>Create Post</button> <button>Pro</button></section>
 		</header>
-		<main id="app_edit" class="edit">
-			<h1>Edit Profile</h1>
-			<label for="name">Name:</label>
-			<input type="text" id="name" placeholder="Current Name" />
-
-			<label for="email">Bio:</label>
-			<textarea class="bio" maxlength="500" rows="5" cols="50" placeholder="Current Bio"></textarea>
-
-			<label for="password">Avatar URL:</label>
-			<input type="password" id="password" placeholder="Current Avatar URL" />
-
-			<label for="password">Avatar Alt Text:</label>
-			<input type="password" id="password" placeholder="Current Avatar Alt Text" />
-
-			<label for="password">Banner URL:</label>
-			<input type="password" id="password" placeholder="Current Banner URL" />
-
-			<label for="password">Banner Alt Text:</label>
-			<input type="password" id="password" placeholder="Current Banner Alt Text" />
-
-			<button id="regBtn" type="button">Update Profile</button>
-			<p>Not Ready for Change? <a href="#" id="loginBtnLink">Profile</a></p>
-		</main>
+		<main id="app_edit" class="edit"></main>
 		<footer>
 			<p>&copy; 2023 Böbbly. All rights reserved.</p>
 		</footer>
