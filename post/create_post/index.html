@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPMincho:wght@400;700&display=swap" rel="stylesheet" />
+		<link rel="stylesheet" href="../../src/style.css" />
+		<script src="../../src/create_post.ts" defer></script>
+
+		<title>Register - Böbbly</title>
+	</head>
+	<body>
+		<header>
+			<img src="../../public/Bobbly_logo_transparent.svg" alt="böbbly" />
+			<section>
+				<span>explore</span>
+				<span>Trending</span>
+				<span>Collection</span>
+			</section>
+			<section><button>Create Post</button> <button>Pro</button></section>
+		</header>
+		<main id="app_edit" class="edit">
+			<h1>Create Post</h1>
+
+			<label for="name">Title:</label>
+			<input type="text" id="name" placeholder="" value="${create_post_title}" disabled />
+
+			<label for="email">Content: <span class="char_count">(max 200 characters)</span></label>
+			<textarea id="bio" class="bio" maxlength="200" rows="5" cols="50">${create_post_content}</textarea>
+
+			<label for="media_url">Media URL:</label>
+			<input type="text" id="media_url" value="${create_post_media_url}" />
+
+			<label for="medsia_alt">Media Alt Text:</label>
+			<input type="text" id="media_alt" value="${create_post_media_alt}" />
+
+			<button id="createBtn" type="button">Create Post</button>
+			<p>Not Ready to share? <a href="#">Profile</a></p>
+		</main>
+		<footer>
+			<p>&copy; 2023 Böbbly. All rights reserved.</p>
+		</footer>
+	</body>
+</html>
