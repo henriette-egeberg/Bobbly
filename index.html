@@ -7,10 +7,26 @@
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPMincho:wght@400;700&display=swap" rel="stylesheet" />
+		<script src="src/get_posts.ts" defer></script>
+		<link rel="stylesheet" href="src/style.css" />
 		<title>bobbly</title>
 	</head>
 	<body>
-		<div id="app" class="register"></div>
-		<script type="module" src="/src/main.ts"></script>
+		<header>
+			<img src="../../public/Bobbly_logo_transparent.svg" alt="böbbly" />
+			<section>
+				<span>explore</span>
+				<span>Trending</span>
+				<span>Collection</span>
+			</section>
+			<section><button>Create Post</button> <button>Pro</button></section>
+		</header>
+		<main>
+			<h1>Recent Posts</h1>
+			<div id="app_posts" class="all_posts"></div>
+		</main>
+		<footer>
+			<p>&copy; 2023 Böbbly. All rights reserved.</p>
+		</footer>
 	</body>
 </html>
