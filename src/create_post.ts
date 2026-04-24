@@ -12,7 +12,7 @@ document.querySelector<HTMLDivElement>("#app_create_post").innerHTML = `
 			<input type="text" id="media_url" />
 
 			<label for="media_alt">Media Alt Text:</label>
-			<input type="text" id="media_alt" " />
+			<input type="text" id="media_alt" />
 
 			<button id="createBtn" type="button">Create Post</button>
 			<p>Not Ready to share? <a href="#">Profile</a></p>

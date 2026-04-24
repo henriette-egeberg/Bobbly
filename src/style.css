@@ -3,7 +3,8 @@
 main.register,
 main.login,
 main.edit,
-main.create_post {
+main.create_post,
+main.edit_post {
 	margin: 64px auto 0 auto;
 	align-items: center;
 	max-width: 400px;
