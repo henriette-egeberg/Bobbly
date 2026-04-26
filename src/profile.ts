@@ -1,3 +1,5 @@
+import { getUserPosts } from "./get_posts_user";
+getUserPosts();
 const appProfile = document.querySelector<HTMLDivElement>("#app_profile");
 if (!appProfile) {
 	throw new Error("#app_profile element not found");

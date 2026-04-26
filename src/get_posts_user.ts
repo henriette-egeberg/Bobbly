@@ -2,30 +2,31 @@ const appPosts = document.querySelector<HTMLDivElement>("#app_posts");
 if (!appPosts) {
 	throw new Error("#app_posts element not found");
 }
-// /social/posts/<id>
-fetch(`https://v2.api.noroff.dev/social/profiles/hennie/posts`, {
-	method: "get",
-	headers: {
-		"Content-type": "application/json; charset=UTF-8",
-		Authorization:
-			"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiaGVrcjk5IiwiZW1haWwiOiJoZW5rcmkwMjMxM0BzdHVkLm5vcm9mZi5ubyIsImlhdCI6MTc3Njc2OTg3NH0.sN_GHEz3a_lgxdk4iuZuTyoDUZeuT5pMocrzjQAMEfw",
-		"X-Noroff-API-Key": "c7e8fcc7-ada1-4eb6-96f6-b1a766d7cad2",
-	},
-})
-	.then((response) => response.json())
-	.then((json) => {
-		const posts = json.data as Array<{
-			title: string;
-			body: string;
-			id: string;
-			tags: string[];
-			media: { url: string } | null;
-		}>;
-		console.log("Post data:", json.data);
+export function getUserPosts() {
+	// /social/posts/<id>
+	fetch(`https://v2.api.noroff.dev/social/profiles/hennie/posts`, {
+		method: "get",
+		headers: {
+			"Content-type": "application/json; charset=UTF-8",
+			Authorization:
+				"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiaGVrcjk5IiwiZW1haWwiOiJoZW5rcmkwMjMxM0BzdHVkLm5vcm9mZi5ubyIsImlhdCI6MTc3Njc2OTg3NH0.sN_GHEz3a_lgxdk4iuZuTyoDUZeuT5pMocrzjQAMEfw",
+			"X-Noroff-API-Key": "c7e8fcc7-ada1-4eb6-96f6-b1a766d7cad2",
+		},
+	})
+		.then((response) => response.json())
+		.then((json) => {
+			const posts = json.data as Array<{
+				title: string;
+				body: string;
+				id: string;
+				tags: string[];
+				media: { url: string } | null;
+			}>;
+			console.log("Post data:", json.data);
 
-		const postsHTML = posts
-			.map(
-				(post) => `
+			const postsHTML = posts
+				.map(
+					(post) => `
 		<div class="grid_item">
 		<img class="blog_posts_img" id="profile_pic_${post.id}" data-post-id="${post.id}" src="${post.media?.url ?? "https://images.unsplash.com/photo-1579547945413-497e1b99dac0?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=80&h=400&w=400"}" alt="Post image unable to load" />
 			<div class="about_post">
@@ -36,24 +37,24 @@ fetch(`https://v2.api.noroff.dev/social/profiles/hennie/posts`, {
 			</div>
 		</div>
 		`,
-			)
-			.join("");
+				)
+				.join("");
 
-		appPosts.innerHTML = `<div class="grid_container">${postsHTML}</div>`;
+			appPosts.innerHTML = `<div class="grid_container">${postsHTML}</div>`;
 
-		posts.forEach((post) => {
-			const profile_pic = document.querySelector(`#profile_pic_${post.id}`) as HTMLImageElement;
-			if (profile_pic) {
-				profile_pic.addEventListener("click", () => {
-					localStorage.setItem("currentPost", post.id);
-					window.location.href = "../post/index.html";
-				});
-			}
-		});
-	})
-	.catch((error) => {
-		console.error("Error making GET request:", error);
-		appPosts.innerHTML = `
+			posts.forEach((post) => {
+				const profile_pic = document.querySelector(`#profile_pic_${post.id}`) as HTMLImageElement;
+				if (profile_pic) {
+					profile_pic.addEventListener("click", () => {
+						localStorage.setItem("currentPost", post.id);
+						window.location.href = "../post/index.html";
+					});
+				}
+			});
+		})
+		.catch((error) => {
+			console.error("Error making GET request:", error);
+			appPosts.innerHTML = `
 
 	<div class="grid_container">
 		<div class="grid_item">
@@ -67,4 +68,5 @@ fetch(`https://v2.api.noroff.dev/social/profiles/hennie/posts`, {
 		</div>
 	</div>
 `;
-	});
+		});
+}
