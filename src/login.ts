@@ -8,10 +8,19 @@ document.querySelector<HTMLDivElement>("#app_login")!.innerHTML = `
 			<input type="password" id="password" placeholder="Enter your password" />
 
 			<button id="loginBtn" type="button">Login</button>
-			<p>Need an account? <a href="#" id="regBtn">Register</a></p>
+			<p>Need an account? <a href="../register/index.html" id="regBtn">Register</a></p>
 
 `;
 const loginBtn = document.querySelector("#loginBtn") as HTMLButtonElement;
+const regBtn = document.querySelector("#reg_btn") as HTMLAnchorElement;
+addEventListener("DOMContentLoaded", () => {
+	if (regBtn) {
+		regBtn.addEventListener("click", () => {
+			console.log("Register button clicked");
+			window.location.href = "../register/index.html";
+		});
+	}
+});
 
 if (loginBtn) {
 	loginBtn.addEventListener("click", () => {
@@ -44,9 +53,10 @@ if (loginBtn) {
 					localStorage.setItem("authToken", json.data.accessToken);
 					alert("Login successful!");
 					// Update the UI
-					const app = document.querySelector("#app");
+					const app = document.querySelector("#app_login");
 					if (app) {
 						app.innerHTML = "<h1>Login successful!</h1>";
+						window.location.href = "../profile/index.html";
 						console.log("User is authenticated");
 					}
 				} else {
@@ -62,10 +72,20 @@ if (loginBtn) {
 const isAuthenticated = localStorage.getItem("authToken") !== null;
 if (isAuthenticated) {
 	console.log("User is authenticated");
-	const app = document.querySelector("#app");
+	const app = document.querySelector("#app_login");
 	if (app) {
-		app.innerHTML = "<h1>Already logged in!</h1>";
+		app.innerHTML = "<h1>Already logged in!</h1><button id='logoutBtn'>Logout</button>";
+	} else {
+		console.log("User is not authenticated");
 	}
-} else {
-	console.log("User is not authenticated");
+}
+const logoutBtn = document.querySelector("#logoutBtn") as HTMLButtonElement;
+
+if (logoutBtn) {
+	logoutBtn.addEventListener("click", () => {
+		console.log("Logout button clicked");
+		localStorage.removeItem("authToken");
+		alert("Logged out successfully!");
+		window.location.href = "../login/index.html";
+	});
 }
