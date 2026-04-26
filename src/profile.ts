@@ -1,5 +1,7 @@
 import { getUserPosts } from "./get_posts_user";
 getUserPosts();
+const authToken = localStorage.getItem("authToken");
+
 const appProfile = document.querySelector<HTMLDivElement>("#app_profile");
 if (!appProfile) {
 	throw new Error("#app_profile element not found");
@@ -9,8 +11,7 @@ fetch(`https://v2.api.noroff.dev/social/profiles/hennie`, {
 	method: "get",
 	headers: {
 		"Content-type": "application/json; charset=UTF-8",
-		Authorization:
-			"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiaGVrcjk5IiwiZW1haWwiOiJoZW5rcmkwMjMxM0BzdHVkLm5vcm9mZi5ubyIsImlhdCI6MTc3Njc2OTg3NH0.sN_GHEz3a_lgxdk4iuZuTyoDUZeuT5pMocrzjQAMEfw",
+		Authorization: `Bearer ${authToken}`,
 		"X-Noroff-API-Key": "c7e8fcc7-ada1-4eb6-96f6-b1a766d7cad2",
 	},
 })
@@ -32,7 +33,7 @@ fetch(`https://v2.api.noroff.dev/social/profiles/hennie`, {
 			<div>@julian_curates</div></span>
 		</div>
 		<div class="grid_item">
-			<button>Follow</button>
+			<button id="followBtn">Follow</button>
 			<button id="editBtn">Edit</button>
 		</div>
 	</div>
@@ -46,7 +47,15 @@ fetch(`https://v2.api.noroff.dev/social/profiles/hennie`, {
 	})
 	.then(() => {
 		const editBtn = document.querySelector("#editBtn") as HTMLButtonElement;
-
+		const followBtn = document.querySelector("#followBtn") as HTMLButtonElement;
+		if (followBtn) {
+			followBtn.addEventListener("click", () => {
+				console.log("Follow button clicked");
+				// Implement follow functionality here
+			});
+		} else {
+			console.error("Follow button not found");
+		}
 		if (editBtn) {
 			editBtn.addEventListener("click", () => {
 				console.log("Edit button clicked");

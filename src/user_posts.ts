@@ -1,3 +1,5 @@
+import { followUser } from "./follow_user";
+import { unfollowUser } from "./unfollow_user";
 const appPosts = document.querySelector<HTMLDivElement>("#app_user");
 const title = document.querySelector("#title") as HTMLHeadingElement;
 if (!appPosts) {
@@ -43,8 +45,22 @@ fetch(`https://v2.api.noroff.dev/social/profiles/${username}/posts`, {
 			.join("");
 
 		appPosts.innerHTML = `<div class="grid_container">${postsHTML}</div>`;
-		title.textContent = `${username}'s Posts`;
+		title.innerHTML = `<h1>${username}'s Posts</h1><button id="followBtn">Follow</button><button id="unfollowBtn">Unfollow</button>`;
 
+		const followBtn = document.querySelector("#followBtn") as HTMLButtonElement;
+		const unfollowBtn = document.querySelector("#unfollowBtn") as HTMLButtonElement;
+		if (unfollowBtn) {
+			unfollowBtn.addEventListener("click", () => {
+				unfollowUser();
+			});
+		}
+		if (followBtn) {
+			followBtn.addEventListener("click", () => {
+				followUser();
+			});
+		} else {
+			console.error("Follow button not found");
+		}
 		posts.forEach((post) => {
 			const profile_pic = document.querySelector(`#profile_pic_${post.id}`) as HTMLImageElement;
 			if (profile_pic) {
