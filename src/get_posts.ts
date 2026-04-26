@@ -17,6 +17,7 @@ fetch(`https://v2.api.noroff.dev/social/posts`, {
 		const posts = json.data as Array<{
 			title: string;
 			body: string;
+			id: string;
 			tags: string[];
 			media: { url: string } | null;
 		}>;
@@ -26,7 +27,7 @@ fetch(`https://v2.api.noroff.dev/social/posts`, {
 			.map(
 				(post) => `
 		<div class="grid_item">
-		<img class="blog_posts_img" src="${post.media?.url ?? "https://images.unsplash.com/photo-1579547945413-497e1b99dac0?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=80&h=400&w=400"}" alt="Post image unable to load" />
+		<img class="blog_posts_img" id="profile_pic_${post.id}" data-post-id="${post.id}" src="${post.media?.url ?? "https://images.unsplash.com/photo-1579547945413-497e1b99dac0?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=80&h=400&w=400"}" alt="Post image unable to load" />
 			<div class="about_post">
 				<span class="when_posted">2 days ago</span>
 				<h2 class="title">${post.title}</h2>
@@ -39,6 +40,15 @@ fetch(`https://v2.api.noroff.dev/social/posts`, {
 			.join("");
 
 		appPosts.innerHTML = `<div class="grid_container">${postsHTML}</div>`;
+		posts.forEach((post) => {
+			const profile_pic = document.querySelector(`#profile_pic_${post.id}`) as HTMLImageElement;
+			if (profile_pic) {
+				profile_pic.addEventListener("click", () => {
+					localStorage.setItem("currentPost", post.id);
+					window.location.href = "../post/index.html";
+				});
+			}
+		});
 	})
 	.catch((error) => {
 		console.error("Error making GET request:", error);
