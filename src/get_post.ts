@@ -6,7 +6,7 @@ if (!appPost) {
 	throw new Error("#app_post element not found");
 }
 // /social/posts/<id>
-fetch(`https://v2.api.noroff.dev/social/posts/${postId}`, {
+fetch(`https://v2.api.noroff.dev/social/posts/${postId}?_author=true`, {
 	method: "get",
 	headers: {
 		"Content-type": "application/json; charset=UTF-8",
@@ -30,7 +30,18 @@ fetch(`https://v2.api.noroff.dev/social/posts/${postId}`, {
          <img class="blog_post_img " src="${post.media?.url ?? "https://images.unsplash.com/photo-1579547945413-497e1b99dac0?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=80&h=400&w=400"}" alt="Post image unable to load" />
          <p>${post.body}</p>
          <p>Tags: ${post.tags.join(", ")}</p>
+		 <button id="profileBtn" type="button">Profile</button>
      `;
+		const profileBtn = document.querySelector("#profileBtn") as HTMLButtonElement;
+		if (profileBtn) {
+			profileBtn.addEventListener("click", () => {
+				console.log("Profile button clicked");
+				window.location.href = "../post/user/index.html";
+				localStorage.setItem("currentProfile", json.data.author.name);
+			});
+		} else {
+			console.error("Profile button not found");
+		}
 	})
 
 	.catch((error) => {
