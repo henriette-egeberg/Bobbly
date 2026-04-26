@@ -1,4 +1,9 @@
-document.querySelector<HTMLDivElement>("#app_create_post").innerHTML = `
+const appCreatePost = document.querySelector<HTMLDivElement>("#app_create_post");
+if (!appCreatePost) {
+	// handle missing element: throw, log, or return
+	throw new Error("Element #app_create_post not found");
+}
+appCreatePost.innerHTML = `
 
      <h1>Create Post</h1>
 
@@ -63,6 +68,10 @@ if (appCreatePostBtn) {
 			})
 			.catch((error) => {
 				const appCreatePost = document.querySelector<HTMLDivElement>("#app_create_post");
+				if (!appCreatePost) {
+					// handle missing element: throw, log, or return
+					throw new Error("Element #app_create_post not found");
+				}
 				console.error("Error making GET request:", error);
 				appCreatePost.innerHTML = `
             <h1>Unable to load page</h1>
