@@ -1,8 +1,8 @@
-const appPosts = document.querySelector<HTMLDivElement>("#app_posts");
-if (!appPosts) {
-	throw new Error("#app_posts element not found");
-}
 export function getUserPosts() {
+	const appPosts = document.querySelector<HTMLDivElement>("#app_posts");
+	if (!appPosts) {
+		throw new Error("#app_posts element not found");
+	}
 	// /social/posts/<id>
 	fetch(`https://v2.api.noroff.dev/social/profiles/hennie/posts`, {
 		method: "get",
