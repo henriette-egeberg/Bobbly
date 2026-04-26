@@ -49,7 +49,7 @@ fetch(`https://v2.api.noroff.dev/social/profiles/${username}/posts`, {
 			if (profile_pic) {
 				profile_pic.addEventListener("click", () => {
 					localStorage.setItem("currentPost", post.id);
-					window.location.href = "../post/index.html";
+					window.location.href = "/post/index.html";
 				});
 			}
 		});
