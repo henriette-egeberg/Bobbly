@@ -45,7 +45,11 @@ fetch(`https://v2.api.noroff.dev/social/profiles/${username}/posts`, {
 
 		appPosts.innerHTML = `<div class="grid_container">${postsHTML}</div>`;
 		title.innerHTML = `<h1>${username}'s Posts</h1><button id="followBtn">Follow</button><button id="unfollowBtn">Unfollow</button>`;
-
+		/**
+		 * follow and unfollow buttons
+		 * if followBtn is clicked, it calls the followUser function
+		 * if unfollowBtn is clicked, it calls the unfollowUser function
+		 */
 		const followBtn = document.querySelector("#followBtn") as HTMLButtonElement;
 		const unfollowBtn = document.querySelector("#unfollowBtn") as HTMLButtonElement;
 		if (unfollowBtn) {

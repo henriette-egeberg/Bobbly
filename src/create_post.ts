@@ -26,6 +26,15 @@ appCreatePost.innerHTML = `
 const appCreatePostBtn = document.querySelector("#createBtn") as HTMLButtonElement;
 
 if (appCreatePostBtn) {
+	/**
+	 * this function is called when the "create post" button is clicked
+	 * it gest data from the form
+	 * title: title of the post
+	 * content: content of the post
+	 * media_url: url of the image attached to the post
+	 * media_alt: alt text for the image
+	 *
+	 */
 	appCreatePostBtn.addEventListener("click", () => {
 		console.log("Create Post button clicked");
 		// Get values from form inputs

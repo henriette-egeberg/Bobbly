@@ -13,6 +13,14 @@ fetch(`https://v2.api.noroff.dev/social/posts`, {
 })
 	.then((response) => response.json())
 	.then((json) => {
+		/**
+		 * gets the post info from the API
+		 * title: title of the post
+		 * body: content of the post
+		 * id: id number of the post
+		 * tags: tags of the post
+		 * media: Images attached to the post (url and alt text)
+		 */
 		const posts = json.data as Array<{
 			title: string;
 			body: string;
