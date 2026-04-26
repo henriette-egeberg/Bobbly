@@ -1,3 +1,4 @@
+import { deletePost } from "./delete";
 const appPost = document.querySelector<HTMLDivElement>("#app_post");
 const postId = localStorage.getItem("currentPost");
 console.log("Current post ID from localStorage:", postId);
@@ -31,8 +32,19 @@ fetch(`https://v2.api.noroff.dev/social/posts/${postId}?_author=true`, {
          <p>${post.body}</p>
          <p>Tags: ${post.tags.join(", ")}</p>
 		 <button id="profileBtn" type="button">Profile</button>
+		 <button id="deleteBtn" type="button">Delete</button>
      `;
 		const profileBtn = document.querySelector("#profileBtn") as HTMLButtonElement;
+		const deleteBtn = document.querySelector("#deleteBtn") as HTMLButtonElement;
+		if (deleteBtn) {
+			deleteBtn.addEventListener("click", () => {
+				console.log("Delete button clicked");
+				deletePost();
+			});
+		} else {
+			console.error("Delete button not found");
+			alert("Access Denied: You do not have permission to delete this post.");
+		}
 		if (profileBtn) {
 			profileBtn.addEventListener("click", () => {
 				console.log("Profile button clicked");
