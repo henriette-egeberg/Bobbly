@@ -1,10 +1,12 @@
 const appPost = document.querySelector<HTMLDivElement>("#app_post");
+const postId = localStorage.getItem("currentPost");
+console.log("Current post ID from localStorage:", postId);
 
 if (!appPost) {
 	throw new Error("#app_post element not found");
 }
 // /social/posts/<id>
-fetch(`https://v2.api.noroff.dev/social/posts/10387`, {
+fetch(`https://v2.api.noroff.dev/social/posts/${postId}`, {
 	method: "get",
 	headers: {
 		"Content-type": "application/json; charset=UTF-8",
