@@ -8,8 +8,7 @@ export function getUserPosts() {
 		method: "get",
 		headers: {
 			"Content-type": "application/json; charset=UTF-8",
-			Authorization:
-				"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiaGVrcjk5IiwiZW1haWwiOiJoZW5rcmkwMjMxM0BzdHVkLm5vcm9mZi5ubyIsImlhdCI6MTc3Njc2OTg3NH0.sN_GHEz3a_lgxdk4iuZuTyoDUZeuT5pMocrzjQAMEfw",
+			Authorization: `Bearer ${localStorage.getItem("authToken")}`,
 			"X-Noroff-API-Key": "c7e8fcc7-ada1-4eb6-96f6-b1a766d7cad2",
 		},
 	})

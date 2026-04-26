@@ -7,8 +7,7 @@ fetch(`https://v2.api.noroff.dev/social/posts/10390`, {
 	method: "get",
 	headers: {
 		"Content-type": "application/json; charset=UTF-8",
-		Authorization:
-			"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiaGVubmllIiwiZW1haWwiOiJ0ZXN0MjYwNUBzdHVkLm5vcm9mZi5ubyIsImlhdCI6MTc3Njg5ODEzOX0.Gqql11w3OBuaQd5Z1uG3mwNiItwtOdXzNSUH8EP9Eeo",
+		Authorization: `Bearer ${localStorage.getItem("authToken")}`,
 		"X-Noroff-API-Key": "c7e8fcc7-ada1-4eb6-96f6-b1a766d7cad2",
 	},
 })
