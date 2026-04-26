@@ -8,6 +8,8 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPMincho:wght@400;700&display=swap" rel="stylesheet" />
 		<script type="module" src="src/get_posts.ts" defer></script>
+		<script type="module" src="src/site_search.ts" defer></script>
+
 		<link rel="stylesheet" href="src/style.css" />
 		<title>bobbly</title>
 	</head>
@@ -22,6 +24,11 @@
 			<div><button>Create Post</button> <button>Pro</button></div>
 		</header>
 		<main>
+			<form action="/search" method="GET">
+				<label for="site-search">Search the site:</label>
+				<input type="search" id="site-search" name="search" placeholder="Search..." />
+				<button type="submit">Search</button>
+			</form>
 			<h1>Recent Posts</h1>
 			<div id="app_posts" class="all_posts"></div>
 		</main>

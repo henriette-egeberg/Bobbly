@@ -1,12 +1,11 @@
 export function deletePost() {
-	const authToken = localStorage.getItem("authToken");
 	const postId = localStorage.getItem("currentPost");
 	// /social/posts/<id>
 	fetch(`https://v2.api.noroff.dev/social/posts/${postId}`, {
 		method: "delete",
 		headers: {
 			"Content-type": "application/json; charset=UTF-8",
-			Authorization: `Bearer ${authToken}`,
+			Authorization: `Bearer ${localStorage.getItem("authToken")}`,
 			"X-Noroff-API-Key": "c7e8fcc7-ada1-4eb6-96f6-b1a766d7cad2",
 		},
 	})
