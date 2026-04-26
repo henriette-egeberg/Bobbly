@@ -36,7 +36,7 @@ fetch(`https://v2.api.noroff.dev/social/posts/${postId}?_author=true`, {
 		if (profileBtn) {
 			profileBtn.addEventListener("click", () => {
 				console.log("Profile button clicked");
-				window.location.href = "../post/user/index.html";
+				window.location.href = "/post/user/index.html";
 				localStorage.setItem("currentProfile", json.data.author.name);
 			});
 		} else {
