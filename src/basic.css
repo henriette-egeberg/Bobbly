@@ -70,6 +70,19 @@ header {
 		background: transparent;
 		margin-left: 16px;
 	}
+	div {
+		background: transparent;
+	}
+	span {
+		background-color: transparent;
+		font-size: 20px;
+		border-bottom: 1px solid var(--accent-border-1);
+		border-top: 1px solid var(--accent-border-1);
+
+		border-radius: 20px;
+		padding: 4px 24px;
+		margin: 0 8px;
+	}
 }
 footer {
 	height: 140px;
