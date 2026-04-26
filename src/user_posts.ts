@@ -5,6 +5,7 @@ if (!appPosts) {
 }
 // /social/posts/<id>
 let username = localStorage.getItem("currentProfile");
+console.log("Current profile username from localStorage:", username);
 fetch(`https://v2.api.noroff.dev/social/profiles/${username}/posts`, {
 	method: "get",
 	headers: {
