@@ -1,9 +1,10 @@
-const appPosts = document.querySelector<HTMLDivElement>("#app_posts");
-if (!appPosts) {
-	throw new Error("#app_posts element not found");
+const appPost = document.querySelector<HTMLDivElement>("#app_post");
+
+if (!appPost) {
+	throw new Error("#app_post element not found");
 }
 // /social/posts/<id>
-fetch(`https://v2.api.noroff.dev/social/posts/10386`, {
+fetch(`https://v2.api.noroff.dev/social/posts/10387`, {
 	method: "get",
 	headers: {
 		"Content-type": "application/json; charset=UTF-8",
@@ -15,7 +16,21 @@ fetch(`https://v2.api.noroff.dev/social/posts/10386`, {
 	.then((response) => response.json())
 	.then((json) => {
 		console.log("Post data:", json.data);
+		const post = json.data as {
+			title: string;
+			body: string;
+			tags: string[];
+			media: { url: string } | null;
+		};
+
+		appPost.innerHTML = `
+       <h1>${post.title}</h1>
+         <img class="blog_post_img " src="${post.media?.url ?? "https://images.unsplash.com/photo-1579547945413-497e1b99dac0?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=80&h=400&w=400"}" alt="Post image unable to load" />
+         <p>${post.body}</p>
+         <p>Tags: ${post.tags.join(", ")}</p>
+     `;
 	})
+
 	.catch((error) => {
 		console.error("Error making GET request:", error);
 	});
