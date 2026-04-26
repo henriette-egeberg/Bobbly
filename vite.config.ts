@@ -18,6 +18,7 @@ export default defineConfig({
 				post: path.resolve(__dirname, "post/index.html"),
 				post_create: path.resolve(__dirname, "post/create_post/index.html"),
 				post_edit: path.resolve(__dirname, "post/edit_post/index.html"),
+				post_user: path.resolve(__dirname, "post/user/index.html"),
 			},
 		},
 	},
