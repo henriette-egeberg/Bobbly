@@ -11,7 +11,7 @@ document.querySelector<HTMLDivElement>("#app_register")!.innerHTML = `
 	<input type="password" id="password" placeholder="Enter your password">
 	
 	<button id="regBtn" type="button">Register</button>
-	<p>Already have an account? <a href="#" id="loginBtnLink">Login</a></p>
+	<p>Already have an account? <a href="../login/index.html" id="loginBtnLink">Login</a></p>
 
 `;
 
@@ -19,7 +19,15 @@ const regBtn = document.querySelector<HTMLButtonElement>("#regBtn");
 if (!regBtn) {
 	throw new Error("Register button not found after rendering the form.");
 }
-
+const loginBtn = document.querySelector("#login_btn") as HTMLAnchorElement;
+addEventListener("DOMContentLoaded", () => {
+	if (loginBtn) {
+		loginBtn.addEventListener("click", () => {
+			console.log("Login button clicked");
+			window.location.href = "../login/index.html";
+		});
+	}
+});
 // Add an event listener to the button
 regBtn.addEventListener("click", () => {
 	console.log("Button clicked");

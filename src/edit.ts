@@ -48,7 +48,7 @@ fetch(`https://v2.api.noroff.dev/social/profiles/hennie`, {
 			<input type="text" id="banner_alt" placeholder="${profile_banner_alt}" value="${profile_banner_alt}" />
 
 			<button id="editBtn" type="button">Update Profile</button>
-			<p>Not Ready for Change? <a href="#" id="loginBtnLink">Profile</a></p>
+			<p>Not Ready for Change? <a href="../index.html" id="loginBtnLink">Profile</a></p>
 `;
 
 		// Attach event listener after HTML is rendered

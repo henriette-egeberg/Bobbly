@@ -31,7 +31,7 @@ fetch(`https://v2.api.noroff.dev/social/profiles/hennie`, {
 		</div>
 		<div class="grid_item">
 			<button>Follow</button>
-			<button>Edit</button>
+			<button id="editBtn">Edit</button>
 		</div>
 	</div>
 
@@ -41,6 +41,18 @@ fetch(`https://v2.api.noroff.dev/social/profiles/hennie`, {
 		</h3>
 	</div>
 `;
+	})
+	.then(() => {
+		const editBtn = document.querySelector("#editBtn") as HTMLButtonElement;
+
+		if (editBtn) {
+			editBtn.addEventListener("click", () => {
+				console.log("Edit button clicked");
+				window.location.href = "../profile/edit/index.html";
+			});
+		} else {
+			console.error("Edit button not found");
+		}
 	})
 	.catch((error) => {
 		console.error("Error making GET request:", error);
@@ -54,7 +66,7 @@ fetch(`https://v2.api.noroff.dev/social/profiles/hennie`, {
 		</div>
 		<div class="grid_item">
 			<button>Follow</button>
-			<button>Edit</button>
+			<button id="editBtn">Edit</button>
 		</div>
 	</div>
 
