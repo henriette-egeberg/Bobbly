@@ -141,3 +141,7 @@
 ### Files Modified
 
 - Modified: `src/edit.ts` (fixed event listener timing and added required API headers)
+
+### The CSS TAilwind Assignment
+
+- Copilot was used to help understand how to set up the tailwind, and also how to convert the css I had to Tailwind. I made sure I understood all it suggested before using any
