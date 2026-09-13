@@ -1,94 +1,95 @@
 const appCreatePost = document.querySelector<HTMLDivElement>("#app_create_post");
+
 if (!appCreatePost) {
-	// handle missing element: throw, log, or return
-	throw new Error("Element #app_create_post not found");
-}
-appCreatePost.innerHTML = `
+	console.warn("Create post page not loaded: #app_create_post not found");
+} else {
+	appCreatePost.innerHTML = `
+        <h1>Create Post</h1>
 
-     <h1>Create Post</h1>
+        <label for="title">Title:</label>
+        <input type="text" id="title" placeholder="Post title" />
 
-			<label for="name">Title:</label>
-			<input type="text" id="title" placeholder=""  />
+        <label for="content">Content: <span class="char_count">(max 200 characters)</span></label>
+        <textarea id="content" class="content bio" maxlength="200" rows="5" cols="50"></textarea>
 
-			<label for="email">Content: <span class="char_count">(max 200 characters)</span></label>
-			<textarea id="content" class="content bio" maxlength="200" rows="5" cols="50"></textarea>
+        <label for="media_url">Media URL:</label>
+        <input type="text" id="media_url" />
 
-			<label for="media_url">Media URL:</label>
-			<input type="text" id="media_url" />
+        <label for="media_alt">Media Alt Text:</label>
+        <input type="text" id="media_alt" />
 
-			<label for="media_alt">Media Alt Text:</label>
-			<input type="text" id="media_alt" />
+        <button id="createBtn" type="button">Create Post</button>
+        <p>Not Ready to share? <a href="#">Profile</a></p>
+    `;
 
-			<button id="createBtn" type="button">Create Post</button>
-			<p>Not Ready to share? <a href="#">Profile</a></p>
+	const appCreatePostBtn = document.querySelector<HTMLButtonElement>("#createBtn");
 
-`;
-const appCreatePostBtn = document.querySelector("#createBtn") as HTMLButtonElement;
+	if (!appCreatePostBtn) {
+		console.warn("Create post button not found");
+	} else {
+		appCreatePostBtn.addEventListener("click", async () => {
+			const titleInput = document.querySelector<HTMLInputElement>("#title");
+			const contentInput = document.querySelector<HTMLTextAreaElement>("#content");
+			const mediaUrlInput = document.querySelector<HTMLInputElement>("#media_url");
+			const mediaAltInput = document.querySelector<HTMLInputElement>("#media_alt");
 
-if (appCreatePostBtn) {
-	/**
-	 * this function is called when the "create post" button is clicked
-	 * it gest data from the form
-	 * title: title of the post
-	 * content: content of the post
-	 * media_url: url of the image attached to the post
-	 * media_alt: alt text for the image
-	 *
-	 */
-	appCreatePostBtn.addEventListener("click", () => {
-		console.log("Create Post button clicked");
-		// Get values from form inputs
-		const title = (document.querySelector("#title") as HTMLInputElement).value;
-		const content = (document.querySelector("#content") as HTMLInputElement).value;
-		const media_url = (document.querySelector("#media_url") as HTMLInputElement).value;
-		const media_alt = (document.querySelector("#media_alt") as HTMLInputElement).value;
+			if (!titleInput || !contentInput || !mediaUrlInput || !mediaAltInput) {
+				alert("A form field is missing. Please reload the page.");
+				return;
+			}
 
-		// Validate inputs
-		if (!title || !content) {
-			alert("Please fill in all fields");
-			return;
-		}
+			const title = titleInput.value.trim();
+			const content = contentInput.value.trim();
+			const mediaUrl = mediaUrlInput.value.trim();
+			const mediaAlt = mediaAltInput.value.trim();
 
-		fetch(`https://v2.api.noroff.dev/social/posts`, {
-			method: "POST",
-			body: JSON.stringify({
-				title: title,
-				body: content,
-				media: {
-					url: media_url,
-					alt: media_alt,
-				},
-			}),
-			headers: {
-				"Content-type": "application/json; charset=UTF-8",
-				Authorization: `Bearer ${localStorage.getItem("authToken")}`,
-				"X-Noroff-API-Key": "c7e8fcc7-ada1-4eb6-96f6-b1a766d7cad2",
-			},
-		})
-			.then((response) => response.json())
-			.then((json) => {
-				console.log("Login POST Response:", json);
-				if (json.data) {
-					alert("Post Created successfully!");
-				} else {
-					alert("Post Creation failed: Invalid response");
+			if (!title || !content) {
+				alert("Please fill in title and content.");
+				return;
+			}
+
+			if (mediaUrl && !/^https?:\/\/.+/i.test(mediaUrl)) {
+				alert("Please enter a valid media URL.");
+				return;
+			}
+
+			const token = localStorage.getItem("authToken");
+			if (!token) {
+				alert("You must be logged in to create a post.");
+				return;
+			}
+
+			try {
+				const response = await fetch("https://v2.api.noroff.dev/social/posts", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json; charset=UTF-8",
+						Authorization: `Bearer ${token}`,
+						"X-Noroff-API-Key": "c7e8fcc7-ada1-4eb6-96f6-b1a766d7cad2",
+					},
+					body: JSON.stringify({
+						title,
+						body: content,
+						media: mediaUrl ? { url: mediaUrl, alt: mediaAlt || title } : undefined,
+					}),
+				});
+
+				const json = await response.json().catch(() => ({}));
+
+				if (!response.ok) {
+					throw new Error(json?.errors?.[0]?.message ?? json?.message ?? `Request failed (${response.status})`);
 				}
-			})
-			.catch((error) => {
-				const appCreatePost = document.querySelector<HTMLDivElement>("#app_create_post");
-				if (!appCreatePost) {
-					// handle missing element: throw, log, or return
-					throw new Error("Element #app_create_post not found");
-				}
-				console.error("Error making GET request:", error);
+
+				console.log("Post created:", json);
+				alert("Post Created successfully!");
+			} catch (error) {
+				console.error("Error creating post:", error);
 				appCreatePost.innerHTML = `
-            <h1>Unable to load page</h1>
-            <p>There was an error loading the create post page. Please try again later.</p>
-            <hr/>
-            <br/><br/><br/>
-            <h2>If problem persists, please contact support and provide the following error details:</h2>
-            <p>Error details: ${error.message}</p>
-`;
-			});
-	});
+                    <h1>Unable to create post</h1>
+                    <p>There was a problem creating your post.</p>
+                    <p>${error instanceof Error ? error.message : "Unknown error"}</p>
+                `;
+			}
+		});
+	}
 }

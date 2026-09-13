@@ -1,91 +1,66 @@
-document.querySelector<HTMLDivElement>("#app_login")!.innerHTML = `
+document.addEventListener("DOMContentLoaded", () => {
+	const appLogin = document.querySelector<HTMLDivElement>("#app_login");
+	if (!appLogin) return;
 
-<h1>Login</h1>
-			<label for="email">Email:</label>
-			<input type="email" id="email" placeholder="Enter your email" />
+	appLogin.innerHTML = `
+    <div class="rounded-2xl border border-fuchsia-500 bg-[#303030] p-6 shadow-xl">
+      <h1 class="mb-6 text-3xl font-bold text-white">Login</h1>
 
-			<label for="password">Password:</label>
-			<input type="password" id="password" placeholder="Enter your password" />
+      <label for="email" class="mb-2 block text-sm font-medium text-white">Email</label>
+      <input id="email" type="email" required class="mb-4 w-full rounded-md border border-gray-500 bg-transparent px-3 py-2 text-white placeholder:text-gray-400" />
 
-			<button id="loginBtn" type="button">Login</button>
-			<p>Need an account? <a href="../register/index.html" id="regBtn">Register</a></p>
+      <label for="password" class="mb-2 block text-sm font-medium text-white">Password</label>
+      <input id="password" type="password" required minlength="8" class="mb-4 w-full rounded-md border border-gray-500 bg-transparent px-3 py-2 text-white placeholder:text-gray-400" />
 
-`;
-const loginBtn = document.querySelector("#loginBtn") as HTMLButtonElement;
-const regBtn = document.querySelector("#reg_btn") as HTMLAnchorElement;
-addEventListener("DOMContentLoaded", () => {
-	if (regBtn) {
-		regBtn.addEventListener("click", () => {
-			console.log("Register button clicked");
-			window.location.href = "../register/index.html";
-		});
-	}
-});
+      <button id="loginBtn" type="button" class="w-full rounded-md bg-fuchsia-600 px-4 py-3 font-medium text-white">
+        Login
+      </button>
 
-if (loginBtn) {
-	loginBtn.addEventListener("click", () => {
-		console.log("Login button clicked");
-		// Get values from form inputs
-		const email = (document.querySelector("#email") as HTMLInputElement).value;
-		const password = (document.querySelector("#password") as HTMLInputElement).value;
+      <p class="mt-4 text-sm text-gray-300">
+        Need an account?
+        <a href="../register/index.html" class="text-cyan-400 underline">Register</a>
+      </p>
+    </div>
+  `;
 
-		// Validate inputs
-		if (!email || !password) {
-			alert("Please fill in all fields");
+	const loginBtn = document.querySelector<HTMLButtonElement>("#loginBtn");
+	if (!loginBtn) return;
+
+	loginBtn.addEventListener("click", async () => {
+		const email = (document.querySelector<HTMLInputElement>("#email")?.value ?? "").trim();
+		const password = document.querySelector<HTMLInputElement>("#password")?.value ?? "";
+
+		if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+			alert("Please enter a valid email.");
 			return;
 		}
 
-		fetch(`https://v2.api.noroff.dev/auth/login`, {
-			method: "POST",
-			body: JSON.stringify({
-				email: email,
-				password: password,
-			}),
-			headers: {
-				"Content-type": "application/json; charset=UTF-8",
-			},
-		})
-			.then((response) => response.json())
-			.then((json) => {
-				console.log("Login POST Response:", json);
-				if (json.data && json.data.accessToken) {
-					// Store the token in local storage
-					localStorage.setItem("authToken", json.data.accessToken);
-					alert("Login successful!");
-					// Update the UI
-					const app = document.querySelector("#app_login");
-					if (app) {
-						app.innerHTML = "<h1>Login successful!</h1>";
-						window.location.href = "../profile/index.html";
-						console.log("User is authenticated");
-					}
-				} else {
-					alert("Login failed: Invalid response");
-				}
-			})
-			.catch((error) => {
-				console.error("Error making login POST request:", error);
-				alert("Login failed: " + error.message);
-			});
-	});
-}
-const isAuthenticated = localStorage.getItem("authToken") !== null;
-if (isAuthenticated) {
-	console.log("User is authenticated");
-	const app = document.querySelector("#app_login");
-	if (app) {
-		app.innerHTML = "<h1>Already logged in!</h1><button id='logoutBtn'>Logout</button>";
-	} else {
-		console.log("User is not authenticated");
-	}
-}
-const logoutBtn = document.querySelector("#logoutBtn") as HTMLButtonElement;
+		if (password.length < 8) {
+			alert("Password must be at least 8 characters.");
+			return;
+		}
 
-if (logoutBtn) {
-	logoutBtn.addEventListener("click", () => {
-		console.log("Logout button clicked");
-		localStorage.removeItem("authToken");
-		alert("Logged out successfully!");
-		window.location.href = "../login/index.html";
+		try {
+			const response = await fetch("https://v2.api.noroff.dev/auth/login", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({ email, password }),
+			});
+
+			const data = await response.json().catch(() => ({}));
+
+			if (!response.ok) {
+				throw new Error(data?.errors?.[0]?.message ?? "Login failed");
+			}
+
+			const token = data?.data?.accessToken ?? data?.accessToken;
+			if (token) localStorage.setItem("authToken", token);
+
+			alert("Login successful!");
+			window.location.href = "../index.html";
+		} catch (error) {
+			console.error(error);
+			alert(error instanceof Error ? error.message : "Login failed");
+		}
 	});
-}
+});

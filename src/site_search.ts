@@ -33,22 +33,22 @@ searchBtn?.addEventListener("click", (event) => {
 			const postsHTML = posts
 				.map(
 					(post) => `
-        <div class="grid_item">
-          <img class="blog_posts_img" id="profile_pic_${post.id}" data-post-id="${post.id}"
-            src="${post.media?.url ?? "https://images.unsplash.com/photo-1579547945413-497e1b99dac0?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=80&h=400&w=400"}"
-            alt="Post image unable to load" />
-          <div class="about_post">
-            <span class="when_posted">2 days ago</span>
-            <h2 class="title">${post.title}</h2>
-            <div class="intro">${post.body}</div>
-            <div class="liked">Tags: ${post.tags.join(", ")}</div>
-          </div>
-        </div>
-      `,
+		<div class="flex flex-col rounded-lg border border-gray-300 bg-white shadow-md">
+		  <img class="blog_posts_img rounded-t-lg" id="profile_pic_${post.id}" data-post-id="${post.id}"
+			src="${post.media?.url ?? "https://images.unsplash.com/photo-1579547945413-497e1b99dac0?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=80&h=400&w=400"}"
+			alt="Post image unable to load" />
+		  <div class="p-4">
+			<span class="text-lg text-gray-500">2 days ago</span>
+			<h2 class="text-lg font-bold">${post.title}</h2>
+			<div class="text-gray-700">${post.body}</div>
+			<div class="text-sm text-gray-500">Tags: ${post.tags.join(", ")}</div>
+		  </div>
+		</div>
+	  `,
 				)
 				.join("");
 
-			appSearch.innerHTML = `<div class="grid_container">${postsHTML}</div>`;
+			appSearch.innerHTML = `<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">${postsHTML}</div>`;
 
 			posts.forEach((post) => {
 				const profile_pic = document.querySelector(`#profile_pic_${post.id}`) as HTMLImageElement;
@@ -63,17 +63,17 @@ searchBtn?.addEventListener("click", (event) => {
 		.catch((error) => {
 			console.error("Error making GET request:", error);
 			appSearch.innerHTML = `
-        <div class="grid_container">
-          <div class="grid_item">
-            <img class="blog_posts_img" src="" alt="" />
-            <div class="about_post">
-              <span class="when_posted">kan ikke laste inn</span>
-              <h2 class="title">kan ikke laste inn</h2>
-              <div class="intro">Kan ikke laste inn blogginnlegg for øyeblikket.</div>
-              <div class="liked">ukjent</div>
-            </div>
-          </div>
-        </div>
-      `;
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+		  <div class="flex flex-col rounded-lg border border-gray-300 bg-white shadow-md">
+			<img class="blog_posts_img rounded-t-lg" src="" alt="" />
+			<div class="p-4">
+			  <span class="text-sm text-gray-500">kan ikke laste inn</span>
+			  <h2 class="text-lg font-bold">kan ikke laste inn</h2>
+			  <div class="text-gray-700">Kan ikke laste inn blogginnlegg for øyeblikket.</div>
+			  <div class="text-sm text-gray-500">ukjent</div>
+			</div>
+		  </div>
+		</div>
+	  `;
 		});
 });
