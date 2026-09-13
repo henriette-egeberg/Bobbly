@@ -1,6 +1,4 @@
 @import "tailwindcss";
-@import "./basic.css";
-@import "./variables.css";
 
 :root {
 	--bg: #303030;
@@ -23,6 +21,10 @@ body {
 	background: var(--bg);
 	color: var(--text);
 	font-family: "BIZ UDPMincho", serif;
+}
+
+body {
+	background: var(--bg);
 }
 
 a {
