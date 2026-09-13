@@ -1,16 +1,61 @@
 {
-  "name": "bobbly",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
-  },
-  "devDependencies": {
-    "@types/node": "^25.6.0",
-    "typescript": "~6.0.2",
-    "vite": "^8.0.4"
-  }
+	"name": "bobbly",
+	"private": true,
+	"version": "0.0.0",
+	"type": "module",
+	"scripts": {
+		"dev": "tailwindcss -i ./src/input.css -o ./src/style.css --watch & vite",
+		"build:css": "tailwindcss -i ./src/input.css -o ./src/style.css --minify",
+		"build": "npm run build:css && tsc && vite build",
+		"preview": "vite preview"
+	},
+	"devDependencies": {
+		"@tailwindcss/cli": "^4.3.3",
+		"@types/node": "^25.6.0",
+		"tailwindcss": "^4.3.3",
+		"typescript": "~6.0.2",
+		"vite": "^8.0.4"
+	},
+	"description": "",
+	"main": "index.js",
+	"dependencies": {
+		"braces": "^3.0.3",
+		"detect-libc": "^2.1.2",
+		"enhanced-resolve": "^5.24.5",
+		"fdir": "^6.5.0",
+		"fill-range": "^7.1.1",
+		"fsevents": "^2.3.3",
+		"graceful-fs": "^4.2.11",
+		"is-extglob": "^2.1.1",
+		"is-glob": "^4.0.3",
+		"is-number": "^7.0.0",
+		"jiti": "^2.7.0",
+		"lightningcss": "^1.32.0",
+		"lightningcss-darwin-arm64": "^1.32.0",
+		"magic-string": "^0.30.21",
+		"micromatch": "^4.0.8",
+		"mri": "^1.2.0",
+		"nanoid": "^3.3.18",
+		"node-addon-api": "^7.1.1",
+		"picocolors": "^1.1.1",
+		"picomatch": "^4.0.7",
+		"postcss": "^8.5.28",
+		"rolldown": "^1.2.8",
+		"source-map-js": "^1.2.1",
+		"tapable": "^2.3.3",
+		"tinyglobby": "^0.2.17",
+		"to-regex-range": "^5.0.1",
+		"undici-types": "^7.19.2"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/henriette-egeberg/Bobbly.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/henriette-egeberg/Bobbly/issues"
+	},
+	"homepage": "https://github.com/henriette-egeberg/Bobbly#readme"
 }
