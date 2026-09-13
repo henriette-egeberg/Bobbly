@@ -1,1 +1,224 @@
 @import "tailwindcss";
+@import "./basic.css";
+@import "./variables.css";
+
+:root {
+	--bg: #303030;
+	--text: #ffffff;
+	--border: #646464;
+	--accent: #64e1f5;
+	--accent-bg: #4b0179;
+	--accent-border-1: #b141b9;
+	--accent-border-2: #89d583;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	margin: 0;
+	min-height: 100vh;
+	background: var(--bg);
+	color: var(--text);
+	font-family: "BIZ UDPMincho", serif;
+}
+
+a {
+	color: var(--accent);
+	text-decoration: none;
+}
+
+button,
+input,
+textarea {
+	font: inherit;
+}
+
+img {
+	display: block;
+	max-width: 100%;
+}
+
+header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background: var(--accent-bg);
+	min-height: 70px;
+	padding: 0 24px;
+	border-bottom: 3px solid var(--accent-border-1);
+}
+
+header img {
+	height: 45px;
+	width: auto;
+}
+
+header div {
+	display: flex;
+	align-items: center;
+	gap: 18px;
+}
+
+header span {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border-top: 1px solid var(--accent-border-1);
+	border-bottom: 1px solid var(--accent-border-1);
+	border-radius: 20px;
+	padding: 6px 20px;
+	font-size: 1rem;
+}
+
+header button {
+	background: transparent;
+	border: 3px solid var(--accent-border-1);
+	border-radius: 10px;
+	padding: 10px 16px;
+	cursor: pointer;
+}
+
+main {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 32px 20px 64px;
+	min-height: calc(100vh - 210px);
+}
+
+main.register,
+main.login,
+main.edit,
+main.create_post,
+main.edit_post {
+	max-width: 420px;
+	margin: 64px auto 0;
+}
+
+main.register h1,
+main.login h1,
+main.edit h1,
+main.create_post h1,
+main.edit_post h1 {
+	margin-bottom: 24px;
+	font-size: 2rem;
+}
+
+main.register label,
+main.login label,
+main.edit label,
+main.create_post label,
+main.edit_post label {
+	display: block;
+	width: 100%;
+	margin-top: 16px;
+	margin-bottom: 8px;
+	font-size: 1.1rem;
+	font-weight: 700;
+}
+
+main.register input,
+main.login input,
+main.edit input,
+main.create_post input,
+main.edit_post input,
+main.register textarea,
+main.login textarea,
+main.edit textarea,
+main.create_post textarea,
+main.edit_post textarea {
+	width: 100%;
+	min-height: 50px;
+	padding: 12px 16px;
+	border: 3px solid var(--border);
+	border-radius: 10px;
+	background: rgba(255, 255, 255, 0.02);
+}
+
+main.register button,
+main.login button,
+main.edit button,
+main.create_post button,
+main.edit_post button {
+	width: 100%;
+	margin-top: 20px;
+	height: 52px;
+	border: 3px solid var(--accent-border-1);
+	border-radius: 12px;
+	background: transparent;
+	cursor: pointer;
+	font-size: 1.1rem;
+}
+
+main.register p,
+main.login p,
+main.edit p,
+main.create_post p,
+main.edit_post p {
+	margin-top: 18px;
+	font-size: 1rem;
+}
+
+.profile_header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 24px;
+	max-width: 1024px;
+	margin: 0 auto 32px;
+	padding: 16px 24px;
+	border-bottom: 3px solid var(--accent-border-1);
+	border-radius: 8px;
+}
+
+.profile_pic {
+	width: 120px;
+	height: 120px;
+	border: 3px solid var(--accent-border-2);
+	border-radius: 12px;
+	object-fit: cover;
+}
+
+.profile_info {
+	max-width: 1024px;
+	margin: 0 auto 32px;
+}
+
+.blog_posts {
+	max-width: 1024px;
+	margin: 32px auto 0;
+}
+
+.blog_posts .post {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	padding: 20px 0;
+	border-bottom: 2px solid var(--border);
+}
+
+.blog_posts_img {
+	width: 100%;
+	max-width: 260px;
+	height: 180px;
+	object-fit: cover;
+	border: 3px solid var(--accent-border-2);
+	border-radius: 24px 12px 0 24px;
+}
+
+.about_post {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+footer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: var(--accent-bg);
+	min-height: 140px;
+	border-top: 3px solid var(--accent-border-1);
+}
